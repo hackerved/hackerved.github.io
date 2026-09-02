@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vedant Chandak | Cyber Security Researcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff; 
+            --black: #111; 
+            --white: #ffffff; 
+            --retro-orange: #d35400; 
+            --grid-line: #e0e0e0; 
+            --border-width: 3px;
+            --shadow-offset: 6px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+    background-color: var(--bg-color);
+    background-image: 
+        /* 1. The Grid */
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+        /* 2. The Neon Corner Glows */
+        radial-gradient(circle 400px at top left, rgba(57, 255, 20, 0.15), transparent),     /* Neon Green */
+        radial-gradient(circle 400px at top right, rgba(0, 255, 255, 0.15), transparent),    /* Neon Cyan */
+        radial-gradient(circle 400px at bottom left, rgba(255, 0, 255, 0.15), transparent),  /* Neon Pink */
+        radial-gradient(circle 400px at bottom right, rgba(255, 255, 0, 0.15), transparent); /* Neon Yellow */
+    
+    background-attachment: fixed;
+    background-size: 48px 48px, 48px 48px, 100vw 100vh, 100vw 100vh, 100vw 100vh, 100vw 100vh;
+    background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+    
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--black);
+    padding: 95px 8%; 
+}
+
+        /* --- UI Components --- */
+        .brutal-box {
+            background: var(--white);
+            border: var(--border-width) solid var(--black);
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--black);
+            padding: 24px;
+            margin-bottom: 24px;
+            position: relative; /* Keeps boxes above the background glows */
+            z-index: 10;
+        }
+
+        .brutal-button {
+            display: inline-block;
+            background: var(--white);
+            border: 2px solid var(--black);
+            box-shadow: 3px 3px 0px var(--black);
+            color: var(--black);
+            padding: 10px 20px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .brutal-button:hover {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+
+        .btn-black {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .btn-orange {
+            background: var(--retro-orange);
+            color: #fff;
+            border-radius: 20px;
+            box-shadow: 3px 3px 0px var(--black);
+        }
+
+        .btn-pill {
+            border-radius: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: var(--border-width) solid var(--black);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .monospace {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .retro-accent {
+            color: var(--retro-orange);
+        }
+
+        /* --- Layout --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 20px;
+            background: var(--white);
+            border: 2px solid var(--black);
+            border-radius: 30px;
+            padding: 10px 30px;
+            box-shadow: 4px 4px 0px var(--black);
+            font-weight: 700;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* --- Left Column Profile --- */
+        .profile-card h1 {
+            font-size: 3rem;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .profile-card .subtitle {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .email-btn {
+            grid-column: span 2;
+        }
+
+        .location {
+            border: 2px solid var(--black);
+            box-shadow: 3px 3px 0px var(--black);
+            padding: 10px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            background: var(--white);
+        }
+
+        /* --- Right Column Content --- */
+        .arsenal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .arsenal-item h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--retro-orange); 
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        ul.list {
+            list-style: none;
+        }
+
+        ul.list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        ul.list li::before {
+            content: "■";
+            color: var(--retro-orange);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 0.8rem;
+        }
+
+        .experience-item {
+            margin-bottom: 25px;
+        }
+        
+        .experience-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .experience-meta {
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            color: #444;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--retro-orange);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .arsenal-grid {
+                grid-template-columns: 1fr;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-grid">
+        <!-- LEFT COLUMN -->
+        <div class="left-col">
+            <div class="brutal-box profile-card">
+                <h1>VEDANT<br>CHANDAK</h1>
+                <div class="subtitle retro-accent">SECURITY RESEARCHER</div>
+                
+                <div class="action-grid">
+                    <a href="mailto:vedantchandak248@gmail.com" class="brutal-button btn-black email-btn">EMAIL OPERATOR</a>
+                    <a href="https://linkedin.com/in/chandakvedant/" target="_blank" class="brutal-button">LINKEDIN</a>
+                    <a href="https://github.com/hackerved" target="_blank" class="brutal-button">GITHUB</a>
+                </div>
+                <div class="location">📍INDIA</div>
+            </div>
+
+            <div class="brutal-box">
+                <h2>PROFESSIONAL SUMMARY</h2>
+                <p class="monospace">Security Researcher with 3 years of experience in web, API, network pentesting, and bug bounty Built VASDEC, a platform that eliminated SQLi/XSS by design using Telegram bot integration and rate limiting Developed Full-Hunt.sh, a bash recon pipeline orchestrating 10+ tools Strong understanding of CI/CD security including secrets exposure, misconfigurations, and supply chain risks Earned 10+ bounties Skilled in CVSS scoring, reporting, and bridging the gap between security and development teams</p>
+            </div>
+            
+            <div class="brutal-box">
+                <h2>EDUCATION & CERTIFICATES</h2>
+                <ul class="list monospace">
+                    <li>BCA - Bachelor of Computer Application | Kavikulaguru Kalidas Sanskrit University (Completed - June 2026)</li>
+<li>
+    Cyber Threat Intelligence (ArcX) 
+    <a href="https://drive.google.com/file/d/1z8adP45IsFly5uGGKGWNztsjFkBWQBFx/view?usp=sharing" target="_blank" class="project-link" style="margin-left: 10px; font-size: 0.75rem;">↳ Verify</a>
+</li>
+<li>
+    Certified API Hacking Expert (CAPIE)
+    <a href="https://drive.google.com/file/d/1d7N6BBGUrohWnu3D7qDByNROogLz9tkU/view?usp=sharing" target="_blank" class="project-link" style="margin-left: 10px; font-size: 0.75rem;">↳ Verify</a>
+</li>
+<li>
+    Diploma in Cyber Security (Oxford home study centre)
+    <a href="https://drive.google.com/file/d/1ITwAZrjEhmon7PhsOu77fpVxq7creO3T/view?usp=sharing" target="_blank" class="project-link" style="margin-left: 10px; font-size: 0.75rem;">↳ Verify</a>
+</li>
+<li>
+    CNSP | Certified Network Security Practitioner (The SecureOPS group)
+    <a href="https://drive.google.com/file/d/1WDok44L8OQByje2Qa37BwZGp07Sk8S4Z/view?usp=sharing" target="_blank" class="project-link" style="margin-left: 10px; font-size: 0.75rem;">↳ Verify</a>
+</li>
+<li>
+    CCNA | 200-301 Network Fundamentals Online (Simply Learn Skillup)
+    <a href="https://drive.google.com/file/d/1pjGI6aZ-CqdkI7Uv5ALGTTgi5zzGx8CS/view?usp=sharing" target="_blank" class="project-link" style="margin-left: 10px; font-size: 0.75rem;">↳ Verify</a>
+</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="right-col">
+            
+            <div class="brutal-box">
+                <h2>TECHNICAL SKILLS</h2>
+                <div class="arsenal-grid">
+                    <div class="arsenal-item">
+                        <h3 class="retro-accent">VAPT METHODOLOGY</h3>
+                        <p class="monospace">OWASP Top 10, SANS Top 25, WAPT, API Testing, Network Security, Cloud Security, SAST, DAST, CI/CD</p>
+                    </div>
+                    <div class="arsenal-item">
+                        <h3 class="retro-accent">CORE ASSESSMENT SKILLS</h3>
+                        <p class="monospace">Proof of Concept (PoC) Analysis, CVSS v3.1 Scoring, Exploit Validation, Remediation, Documenting & Reporting, Patch Management, Security & Risk Assessment, Threat Detection</p>
+                    </div>
+                    <div class="arsenal-item">
+                        <h3 class="retro-accent">OFFENSIVE TOOLING</h3>
+                        <p class="monospace">BurpSuite, Nuclei, Caido, Nmap, Sqlmap, Dirsearch, Subfinder, Sublist3r, Seclists, WaybackUrls, Gau, Katana, Ffuf, Subzy, Gitleaks, Subjack, httpx</p>
+                    </div>
+                    <div class="arsenal-item">
+                        <h3 class="retro-accent">NETWORKING & OS</h3>
+                        <p class="monospace">TCP/IP, OSI model, IDS/IPS, AD Fundamentals, Kali, Parrot, Ubuntu, Black Arch, Tails</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="brutal-box">
+                <h2>ACHIEVEMENTS</h2>
+                <ul class="list monospace">
+                    <li>Secured 10+ Accepted Bounties across Private & Public Programs</li>
+                    <li>Reduced reconnaissance time by 80% through Full-Hunt.sh automation</li>
+                    <li>Architected VASDEC with a security-first approach eliminating traditional database vectors</li>
+                </ul>
+            </div>
+
+            <div class="brutal-box">
+                <h2>EXPERIENCE</h2>
+                
+                <div class="experience-item">
+                    <h3>Independent Security Researcher</h3>
+                    <div class="experience-meta monospace"><span>Self-employed</span><span>June 2025 - Present</span></div>
+                    <p class="monospace">Earned 10+ accepted bounties across public & private programs delivered detailed reports with POCs and CVSS scoring Founded VASDEC built security-first architecture replaced databases with Telegram bot to eliminate SQLi, XSS, SSTi</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Cyber Security Trainer</h3>
+                    <div class="experience-meta monospace"><span>Nettech India | Mumbai (On-site)</span><span>Dec 2024 - June 2025</span></div>
+                    <p class="monospace">Mentored students and working professionals in ethical hacking, VAPT & bug bounty resulted clearing industry certifications Helped them to learn OWASP Top 10, Burp Suite, network pentesting, and professional report writing</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Cyber Security Analyst</h3>
+                    <div class="experience-meta monospace"><span>Versatile Technology | Pune (Hybrid)</span><span>June 2022 - May 2024</span></div>
+                    <p class="monospace">Tested web/API applications identified vulnerabilities including broken access control and business logic Automated SAST/DAST alerts manually validated exploits using Burp Suite Delivered technical reports with prioritized remediation collaborated with dev teams on patch management</p>
+                </div>
+            </div>
+
+            <div class="brutal-box">
+                <h2>PROJECTS</h2>
+                
+                <div class="experience-item">
+                    <h3>Full-Hunt.sh - Automated Recon tool</h3>
+                    <p class="monospace">Built bash pipeline orchestrating 10+ tools (Subfinder, Amass, Httpx, Katana, Ffuf, Nuclei, Subzy). Implemented dynamic wordlist resolution, error handling, and structured output reduced recon time by 80%</p>
+                    <a href="https://github.com/hackerved/fullhunt/" target="_blank" class="project-link">↳ View on GitHub</a>
+                </div>
+
+                <div class="experience-item">
+                    <h3>VASDEC - Venture Studio Platform</h3>
+                    <p class="monospace">Full-stack platform deployed on Render; security-first design replaced databases with Telegram bot Implemented rate limiting to prevent DOS attacks integrated AI automation for workflow efficiency</p>
+                    <a href="https://vasdec-zj9v.onrender.com" target="_blank" class="project-link">↳ Live: vasdec-zj9v.onrender.com</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
